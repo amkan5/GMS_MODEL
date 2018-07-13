@@ -1,5 +1,5 @@
 package pool;
-
+//공부를 위해서 남겨둠 static 
 public class DBConstant {
 	public static final String ORACLE_DRIVER = "oracle.jdbc.driver.OracleDriver";
 	public static final String MYSQL_DRIVER = "";

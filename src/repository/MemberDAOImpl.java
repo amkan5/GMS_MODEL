@@ -3,6 +3,8 @@ package repository;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import enums.MemberQuery;
 import enums.Vendor;
 import domain.ExamBean;
 import domain.MemberBean;
@@ -34,11 +36,26 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 	}
 	@Override
-	public void insertMember(MemberBean member) {
-		// TODO Auto-generated method stub
-		
+	public void insertMember(MemberBean bean) {
+		try {//void일때는 int로 받기. select나 이런건 
+			 int rs = DatabaseFactory.createDatabase(Vendor.ORACLE, //애플.아이폰 이런느낌
+						DBConstant.USERNAME, 
+						DBConstant.PASSWORD)
+						.getConnection()
+						.createStatement()
+						.executeUpdate(String.format(
+								MemberQuery.INSERT_MEMBER.toString(),
+								bean.getMemId(),bean.getPassword(),
+								bean.getName(),bean.getSsn()));
+			 System.out.println(bean.toString());
+			 System.out.println("가입결과: "+ rs);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	}
-
+	
 	@Override
 	public void updateMember(MemberBean member) {
 		// TODO Auto-generated method stub
@@ -85,22 +102,16 @@ public class MemberDAOImpl implements MemberDAO {
 				Statement stmt = conn.createStatement();*/
 		
 		
-		try {
-						ResultSet rs = DatabaseFactory.createDatabase(
+		try {	ResultSet rs = DatabaseFactory.createDatabase(
 						Vendor.ORACLE, 
 						DBConstant.USERNAME, 
 						DBConstant.PASSWORD)
 						.getConnection()
 						.createStatement()
-						.executeQuery(String.format("SELECT "
-								+"MEM_ID USERID, PASSWORD, TEAM_ID TEAMID, NAME, AGE, ROLL FROM MEMBER "+
-								"WHERE MEM_ID LIKE '%s' "
-								+"AND PASSWORD LIKE '%s' ",
+						.executeQuery(String.format(
+								MemberQuery.LOGIN.toString(),
 								bean.getMemId(),
 								bean.getPassword()));
-						
-						
-				
 				if(rs.next()){
 		                do{  member = new MemberBean();
 		                	 member.setMemId(rs.getString("USERID"));

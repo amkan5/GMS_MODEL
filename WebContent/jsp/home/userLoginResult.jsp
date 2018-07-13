@@ -10,8 +10,8 @@
 "KAN"
 "1253" -->
 <%
-	String userid= request.getParameter("userid");
-	String password = request.getParameter("password");
+	/* String userid= request.getParameter("userid");
+	String password = request.getParameter("password"); */
 	MemberBean m = new MemberBean();
 	m.setMemId(request.getParameter("userid"));
 	m.setPassword(request.getParameter("password"));

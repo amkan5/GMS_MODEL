@@ -13,8 +13,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public void createMember(MemberBean member) {
-		// TODO Auto-generated method stub
-		
+		MemberDAOImpl.getInstance().insertMember(member);
 	}
 
 	@Override

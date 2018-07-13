@@ -1,7 +1,7 @@
 package domain;
 
 public class MemberBean {
-	protected String memId,name,roll,teamId,age,password;
+	protected String memId,name,roll,teamId,age,password,ssn;
 	public String getMemId() {
 		return memId;
 	}
@@ -37,6 +37,13 @@ public class MemberBean {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getSsn() {
+		return ssn;
+	}
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
 	}
 	@Override
 	public String toString() {
