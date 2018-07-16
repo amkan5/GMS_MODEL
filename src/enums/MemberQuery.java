@@ -1,8 +1,8 @@
 package enums;
 
 public enum MemberQuery {
-	LOGIN, INSERT_MEMBER;
-
+	LOGIN, INSERT_MEMBER, COUNT_MEMBER, UPDATE_MEMBER, DELETE_MEMBER,
+	SELECT_ALL_MEMBER, SELECT_ONE_MEMBER;
 	@Override //컨트롤+스페이스 toSpring
 			 // 얘가 상수처리하는것보다 조금 더 느리긴한데 뺵뺵한거임. 
 	public String toString() {
@@ -20,6 +20,41 @@ public enum MemberQuery {
 					+"VALUES "
 					+"( '%s', '%s', '%s', '%s' )";
 			break;
+		case COUNT_MEMBER : 
+			query = "SELECT COUNT(*) AS count FROM MEMBER";
+			break;
+		case UPDATE_MEMBER : 
+			query = "UPDATE MEMBER SET PASSWORD = '%s' "
+					+ "WHERE MEM_ID LIKE '%s' "
+					+ "AND PASSWORD LIKE '%s'";
+			break;
+		case DELETE_MEMBER : 
+			query = "DELETE FROM MEMBER "
+					+ "WHERE MEM_ID LIKE '%s' "
+					+ "AND PASSWORD LIKE '%s'";
+			break;
+		case SELECT_ALL_MEMBER :
+			query = "SELECT "
+					+ "MEM_ID AS USERID,"
+					+ "NAME,"
+					+ "AGE,"
+					+ "ROLL,"
+					+ "PASSWORD,"
+					+ "SSN,"
+					+ "TEAM_ID"
+					+ " FROM MEMBER";
+			break;
+		case SELECT_ONE_MEMBER :
+			query = "SELECT "
+					+ "MEM_ID AS USERID,"
+					+ "NAME,"
+					+ "AGE,"
+					+ "ROLL,"
+					+ "PASSWORD,"
+					+ "SSN,"
+					+ "TEAM_ID"
+					+ " FROM MEMBER "
+					+ "WHERE  ";
 		}
 		// TODO Auto-generated method stub
 		return query;

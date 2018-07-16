@@ -1,7 +1,12 @@
 package repository;
 
+import java.beans.Statement;
+import java.sql.*;
 import java.util.List;
 import domain.ExamBean;
+import enums.*;
+import factory.DatabaseFactory;
+import pool.DBConstant;
 public class ExamDAOImpl implements ExamDAO {
 	private static ExamDAO instance = new ExamDAOImpl();
 	public static ExamDAO getInstance() {
@@ -18,7 +23,7 @@ public class ExamDAOImpl implements ExamDAO {
 
 	@Override
 	public void updateExam(ExamBean exam) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -48,8 +53,8 @@ public class ExamDAOImpl implements ExamDAO {
 
 	@Override
 	public int countMember() {
-		// TODO Auto-generated method stub
-		return 0;
+		int count = 0;
+		return count;
 	}
 
 }

@@ -18,21 +18,21 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void updateMember(MemberBean member) {
-		// TODO Auto-generated method stub
-		
+		MemberDAOImpl.getInstance().updateMember(member);
+		System.out.println("updateS : " + member.toString());
 	}
 
 	@Override
-	public void delteMember(MemberBean member) {
-		// TODO Auto-generated method stub
+	public void delteMember(MemberBean member) {	
+		MemberDAOImpl.getInstance().dropMember(member);	
+		System.out.println("deleteS : " + member.toString());
 		
 	}
 
 
 	@Override
 	public List<MemberBean> list() {
-		// TODO Auto-generated method stub
-		return null;
+		return MemberDAOImpl.getInstance().selectAll();
 	}
 	@Override
 	public List<MemberBean> selectSome(String word) {
@@ -46,8 +46,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public int countMember() {
-		// TODO Auto-generated method stub
-		return 0;
+		return MemberDAOImpl.getInstance().countMember();
 	}
 	@Override
 	public boolean loginB(MemberBean bean) {

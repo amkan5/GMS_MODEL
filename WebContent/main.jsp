@@ -1,13 +1,16 @@
 
+<%@page import="service.MemberServiceImpl"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import= "java.text.SimpleDateFormat" %>
 <%@page import= "java.util.Date" %>
 <%!
 	int a = 4, b=5;
+	int count = 0;
 %>
 <% 
 	int c = a+b;
+	count = MemberServiceImpl.getInstance().countMember();
 %>
 <!doctype html>
 <html lang="en">
@@ -17,6 +20,7 @@
 	<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+<h3> 현재회원수 :  <%= count %> </h3>
 <%=new SimpleDateFormat("yyyy년 MM월 dd일").format(new Date()) %>
 	<table class="margin-auto">
 		<tr class="height-150">
@@ -33,9 +37,12 @@
 			</td>
 			<td>
 			<ul>
-				<li><a href="jsp/login/userLoginForm.jsp">사용자로그인</a></li>
-				<li><a href="jsp/login/admin_login.jsp">관리자로그인</a></li>
-				<li><%=c %></li>
+				<li><a href="jsp/home/userLoginForm.jsp">사용자로그인</a></li>
+				<li><a href="jsp/home/admin_login.jsp">관리자로그인</a></li>
+				<li><a href="jsp/home/joinForm.jsp">회원가입</a> </li>
+				<li><a href="jsp/update/updateForm.jsp">비밀번호바꾸기</a></li>
+				<li><a href="jsp/delete/deleteForm.jsp">회원탈퇴</a></li>
+				<li><a href="jsp/mypage/memberlist.jsp">회원목록</a></li>
 			</ul>			
 			</td>
 		</tr>
