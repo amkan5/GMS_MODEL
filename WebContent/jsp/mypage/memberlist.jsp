@@ -6,7 +6,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<style> td{width:100px}</style>
+	<style> td{width:100px}
+	</style>
 	<meta charset="UTF-8" />
 	<title>memberList</title>
 </head>
@@ -17,8 +18,7 @@
 	.list();
 
 %>
-
-<table class = "margin-auto">
+<table class = "tbl">
   <tr>
    <th>이름</th>
    <th>아이디</th>
@@ -31,7 +31,6 @@ for(int i=0;i<lst.size();i++){
     <td > <%= lst.get(i).getMemId() %> </td>
     <td > <%= lst.get(i).getTeamId() %> </td>
     </tr>
-    
     <%			
 	}
 	%>

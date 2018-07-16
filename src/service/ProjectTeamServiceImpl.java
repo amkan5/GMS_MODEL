@@ -1,11 +1,18 @@
 package service;
-
+import domain.*;
 import java.util.List;
 
 import domain.ProjectTeamBean;
+import repository.ProjectTeamDAOImpl;
 
 public class ProjectTeamServiceImpl implements ProjectTeamService{
-
+	private static  ProjectTeamService instance = new  ProjectTeamServiceImpl();
+	public static  ProjectTeamService getInstance() {
+		return instance;
+	}
+	private  ProjectTeamServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public void createProjectTeam(ProjectTeamBean member) {
 		// TODO Auto-generated method stub
@@ -26,8 +33,7 @@ public class ProjectTeamServiceImpl implements ProjectTeamService{
 
 	@Override
 	public ProjectTeamBean selectOne(String word) {
-		// TODO Auto-generated method stub
-		return null;
+		return ProjectTeamDAOImpl.getInstance().selectOne(word);
 	}
 
 	@Override

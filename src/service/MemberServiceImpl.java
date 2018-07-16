@@ -36,13 +36,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 	@Override
 	public List<MemberBean> selectSome(String word) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("service word : " + word);
+		return MemberDAOImpl.getInstance().selectSome(word);
 	}
 	@Override
 	public MemberBean selectOne(String word) {
-		// TODO Auto-generated method stub
-		return null;
+		return MemberDAOImpl.getInstance().selectOne(word);
 	}
 	@Override
 	public int countMember() {

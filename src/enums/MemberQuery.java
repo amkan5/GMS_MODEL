@@ -2,7 +2,7 @@ package enums;
 
 public enum MemberQuery {
 	LOGIN, INSERT_MEMBER, COUNT_MEMBER, UPDATE_MEMBER, DELETE_MEMBER,
-	SELECT_ALL_MEMBER, SELECT_ONE_MEMBER;
+	SELECT_ALL_MEMBER, SELECT_ONE_MEMBER, SELECT_ONE_TEAM, SELECT_SOME_MEMBER;
 	@Override //컨트롤+스페이스 toSpring
 			 // 얘가 상수처리하는것보다 조금 더 느리긴한데 뺵뺵한거임. 
 	public String toString() {
@@ -52,9 +52,30 @@ public enum MemberQuery {
 					+ "ROLL,"
 					+ "PASSWORD,"
 					+ "SSN,"
-					+ "TEAM_ID"
+					+ "TEAM_ID "
 					+ " FROM MEMBER "
-					+ "WHERE  ";
+					+ "WHERE MEM_ID LIKE '%s'";
+			break;
+		case SELECT_ONE_TEAM :
+			query = "SELECT "
+					+ "TEAM_ID,"
+					+ "TEAM_NAME "
+					+ "FROM PROJECT_TEAM "
+					+ "WHERE TEAM_NAME LIKE '%s'";
+					break;
+		case SELECT_SOME_MEMBER :
+			query = "SELECT "
+					+ "MEM_ID AS USERID,"
+					+ "NAME,"
+					+ "AGE,"
+					+ "ROLL,"
+					+ "PASSWORD,"
+					+ "SSN,"
+					+ "TEAM_ID "
+					+ " FROM MEMBER "
+					+ "WHERE TEAM_ID LIKE '%s'";
+			System.out.println(query);
+			break;
 		}
 		// TODO Auto-generated method stub
 		return query;

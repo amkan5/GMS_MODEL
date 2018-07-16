@@ -43,6 +43,8 @@
 				<li><a href="jsp/update/updateForm.jsp">비밀번호바꾸기</a></li>
 				<li><a href="jsp/delete/deleteForm.jsp">회원탈퇴</a></li>
 				<li><a href="jsp/mypage/memberlist.jsp">회원목록</a></li>
+				<li><a href="jsp/mypage/searchTeamForm.jsp"> 팀이름검색 </a></li>
+						
 			</ul>			
 			</td>
 		</tr>

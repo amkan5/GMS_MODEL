@@ -8,6 +8,7 @@ import enums.MemberQuery;
 import enums.Vendor;
 import domain.ExamBean;
 import domain.MemberBean;
+import domain.ProjectTeamBean;
 import factory.*;
 import pool.DBConstant;
 
@@ -129,7 +130,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public MemberBean selectOne(MemberBean Member) {
+	public MemberBean selectOne(String word) {
 		MemberBean mem = new MemberBean();		
 		try {
 			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, 
@@ -137,7 +138,9 @@ public class MemberDAOImpl implements MemberDAO {
 						.getConnection()
 						.createStatement()
 						.executeQuery(
-								String.format(MemberQuery.SELECT_ONE_MEMBER.toString()));
+								String.format(
+										MemberQuery.SELECT_ONE_MEMBER.toString()
+										,word));
 		while(rs.next()) {
 			mem.setAge(rs.getString("AGE"));
 			mem.setMemId(rs.getString("USERID"));
@@ -178,8 +181,37 @@ public class MemberDAOImpl implements MemberDAO {
 
 	@Override
 	public List<MemberBean> selectSome(String word) {
-		// TODO Auto-generated method stub
-		return null;
+		List<MemberBean> lst = new ArrayList<>();
+		MemberBean mem = null;
+		try {
+			ResultSet rs = DatabaseFactory.createDatabase(Vendor.ORACLE, 
+					DBConstant.USERNAME, DBConstant.PASSWORD)
+					.getConnection()
+					.createStatement()
+					.executeQuery(
+							String.format(MemberQuery.SELECT_SOME_MEMBER.toString(), 
+									word)
+							)
+					;
+			while(rs.next()) {
+				mem = new MemberBean();
+				mem.setAge(rs.getString("AGE"));
+				mem.setMemId(rs.getString("USERID"));
+				mem.setName(rs.getString("NAME"));
+				mem.setPassword(rs.getString("PASSWORD"));
+				mem.setRoll(rs.getString("ROLL"));
+				mem.setSsn(rs.getString("SSN"));
+				mem.setTeamId(rs.getString("TEAM_ID"));
+				lst.add(mem);
+			}
+			for(int i=0;i<lst.size();i++) {
+				System.out.println(lst.get(i).getName());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lst;
 	}
 	@Override
 	public MemberBean login(MemberBean bean) {
